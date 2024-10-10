@@ -16,16 +16,19 @@ class PhotoCaptureDelegate: GlobalReferenceHolder, AVCapturePhotoCaptureDelegate
   private let cameraSessionDelegate: CameraSessionDelegate?
   private let metadataProvider: MetadataProvider
   private let path: URL
+  private let name: String
 
   required init(promise: Promise,
                 enableShutterSound: Bool,
                 metadataProvider: MetadataProvider,
                 path: URL,
+                name: String,
                 cameraSessionDelegate: CameraSessionDelegate?) {
     self.promise = promise
     self.enableShutterSound = enableShutterSound
     self.metadataProvider = metadataProvider
     self.path = path
+    self.name = name
     self.cameraSessionDelegate = cameraSessionDelegate
     super.init()
     makeGlobal()
@@ -65,6 +68,7 @@ class PhotoCaptureDelegate: GlobalReferenceHolder, AVCapturePhotoCaptureDelegate
 
       promise.resolve([
         "path": path.absoluteString,
+        "name": name,
         "width": width as Any,
         "height": height as Any,
         "orientation": orientation,

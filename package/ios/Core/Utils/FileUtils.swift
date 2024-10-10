@@ -49,26 +49,66 @@ enum FileUtils {
   }
 
   static func createRandomFileName(withExtension fileExtension: String) -> String {
+    //OG, don't change sig
+      //Hopefully can remove this
     return UUID().uuidString + "." + fileExtension
   }
 
+  static func createFileName(withExtension fileExtension: String, fileName: String?) -> String {
+      if let fileName {
+          return fileName + "." + fileExtension
+      } else {
+          return UUID().uuidString + "." + fileExtension
+      }
+  }
+
+  static func getRandomFileName() -> String {
+    UUID().uuidString
+  }
+
+
+  static private func generateCustomDirectory(directory: String) throws -> URL {
+
+    // Prefix with file://
+    let prefixedDirectory = directory.starts(with: "file:") ? directory : "file://\(directory)"
+    // Create URL
+    guard let url = URL(string: prefixedDirectory) else {
+      throw CameraError.capture(.invalidPath(path: directory))
+    }
+      return url
+  }
+    
+    static private func generateFilePath(directory: URL, fileExtension: String, fileName: String?) throws -> URL {
+        let name = createFileName(withExtension: fileExtension, fileName: fileName)
+        return directory.appendingPathComponent(name)
+    }
+
+
+
   static func getFilePath(directory: URL, fileExtension: String) throws -> URL {
+    // ********* OG, don't change sig **********
     // Random UUID filename
-    let filename = createRandomFileName(withExtension: fileExtension)
+    let filename = createFileName(withExtension: fileExtension, fileName: nil)
     return directory.appendingPathComponent(filename)
   }
 
+    
+    
   static func getFilePath(customDirectory: String, fileExtension: String) throws -> URL {
-    // Prefix with file://
-    let prefixedDirectory = customDirectory.starts(with: "file:") ? customDirectory : "file://\(customDirectory)"
-    // Create URL
-    guard let url = URL(string: prefixedDirectory) else {
-      throw CameraError.capture(.invalidPath(path: customDirectory))
-    }
-    return try getFilePath(directory: url, fileExtension: fileExtension)
+    let url = try generateCustomDirectory(directory: customDirectory)
+    return try generateFilePath(directory: url, fileExtension: fileExtension, fileName: nil)
+  }
+    
+  static func getFilePath(customDirectory: String, fileExtension: String, fileName: String) throws -> URL {
+    let url = try generateCustomDirectory(directory: customDirectory)
+    return try generateFilePath(directory: url, fileExtension: fileExtension, fileName: fileName)
   }
 
   static func getFilePath(fileExtension: String) throws -> URL {
-    return try getFilePath(directory: tempDirectory, fileExtension: fileExtension)
+    return try generateFilePath(directory: tempDirectory, fileExtension: fileExtension, fileName: nil)
+  }
+    
+  static func getFilePath(fileExtension: String, fileName: String) throws -> URL {
+    return try generateFilePath(directory: tempDirectory, fileExtension: fileExtension, fileName: fileName)
   }
 }
