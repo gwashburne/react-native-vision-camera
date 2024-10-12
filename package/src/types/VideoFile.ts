@@ -20,6 +20,14 @@ export interface RecordVideoOptions {
    */
   path?: string
   /**
+   * A custom file name that will be applied to the video.
+   *
+   * Do not include the file extension, as VisionCamera will take care of that.
+   *
+   * By default, VisionCamera will generate a unique filename.
+   */
+  name?: string
+  /**
    * Called when there was an unexpected runtime error while recording the video.
    */
   onRecordingError: (error: CameraCaptureError) => void

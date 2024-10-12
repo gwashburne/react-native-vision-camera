@@ -15,6 +15,10 @@ struct Video {
    */
   var path: String
   /**
+   Name of the video file
+   */
+  var name: String
+  /**
    Duration of the recorded video (in seconds)
    */
   var duration: Double
@@ -26,6 +30,7 @@ struct Video {
   func toJSValue() -> NSDictionary {
     return [
       "path": path,
+      "name": name,
       "duration": duration,
       "width": size.width,
       "height": size.height,

@@ -75,6 +75,7 @@ extension CameraSession {
           if status == .completed {
             // Recording was successfully saved
             let video = Video(path: recordingSession.url.absoluteString,
+                              name: options.name,
                               duration: recordingSession.duration,
                               size: recordingSession.size)
             onVideoRecorded(video)
