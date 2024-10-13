@@ -22,6 +22,7 @@ suspend fun CameraView.takePhoto(optionsMap: ReadableMap): WritableMap {
 
   val map = Arguments.createMap()
   map.putString("path", photo.path)
+  map.putString("name", photo.name)
   map.putInt("width", photo.width)
   map.putInt("height", photo.height)
   map.putString("orientation", photo.orientation.unionValue)
