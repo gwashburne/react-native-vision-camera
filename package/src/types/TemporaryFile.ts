@@ -10,4 +10,10 @@ export interface TemporaryFile {
    * * **Note:** This file might get deleted once the app closes because it lives in the temp directory.
    */
   path: string
+  /**
+   * The name of the file
+   *
+   * * **Note:** Does not include extension
+   */
+  name: string
 }

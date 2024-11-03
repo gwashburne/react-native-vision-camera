@@ -20,6 +20,14 @@ export interface RecordVideoOptions {
    */
   path?: string
   /**
+   * A custom file name that will be applied to the VideoFile.
+   *
+   * Do not include the file extension; VisionCamera will add that.
+   *
+   * By default, VisionCamera will generate a UUID.
+   */
+  name?: string
+  /**
    * Called when there was an unexpected runtime error while recording the video.
    */
   onRecordingError: (error: CameraCaptureError) => void

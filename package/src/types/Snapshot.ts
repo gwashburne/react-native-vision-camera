@@ -15,6 +15,14 @@ export interface TakeSnapshotOptions {
    * By default, VisionCamera will use the device's temporary directory.
    */
   path?: string
+  /**
+   * A custom file name that will be applied to the Snapshot.
+   *
+   * Do not include the file extension; VisionCamera will add that.
+   *
+   * By default, VisionCamera will generate a UUID.
+   */
+  name?: string
 }
 
 export type SnapshotFile = Pick<PhotoFile, 'path' | 'width' | 'height' | 'orientation' | 'isMirrored'>

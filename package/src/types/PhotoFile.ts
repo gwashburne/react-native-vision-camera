@@ -18,6 +18,14 @@ export interface TakePhotoOptions {
    */
   path?: string
   /**
+   * A custom file name that will be applied to the PhotoFile.
+   *
+   * Do not include the file extension; VisionCamera will add that.
+   *
+   * By default, VisionCamera will generate a UUID.
+   */
+  name?: string
+  /**
    * Specifies whether red-eye reduction should be applied automatically on flash captures.
    *
    * @platform iOS
