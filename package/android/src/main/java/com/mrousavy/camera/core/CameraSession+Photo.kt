@@ -38,7 +38,7 @@ suspend fun CameraSession.takePhoto(options: TakePhotoOptions): Photo {
   val rotation = photoOutput.targetRotation
   val orientation = Orientation.fromSurfaceRotation(rotation)
 
-  return Photo(photoFile.uri.path, size.width, size.height, orientation, isMirrored)
+  return Photo(photoFile.uri.path, options.file.name, size.width, size.height, orientation, isMirrored)
 }
 
 private val AudioManager.isSilent: Boolean
