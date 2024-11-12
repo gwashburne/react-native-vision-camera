@@ -11,9 +11,7 @@ export interface TemporaryFile {
    */
   path: string
   /**
-   * The name of the file
-   *
-   * * **Note:** Does not include extension
+   * The name of the file, including the extension.
    */
   name: string
 }
