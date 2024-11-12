@@ -11,9 +11,9 @@ import Foundation
 
 struct Video {
   /**
-   Path to the temporary video file
+   URL to the temporary video file
    */
-  var path: String
+  var url: URL
   /**
    Duration of the recorded video (in seconds)
    */
@@ -25,7 +25,8 @@ struct Video {
 
   func toJSValue() -> NSDictionary {
     return [
-      "path": path,
+      "path": url.absoluteString,
+      "name": url.lastPathComponent,
       "duration": duration,
       "width": size.width,
       "height": size.height,

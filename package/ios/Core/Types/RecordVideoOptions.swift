@@ -14,6 +14,7 @@ struct RecordVideoOptions {
   var flash: Torch = .off
   var codec: AVVideoCodecType?
   var path: URL
+  var name: String
   /**
    * Full Bit-Rate override for the Video Encoder, in Megabits per second (Mbps)
    */
@@ -41,12 +42,18 @@ struct RecordVideoOptions {
     self.bitRateOverride = bitRateOverride
     // BitRate Multiplier
     self.bitRateMultiplier = bitRateMultiplier
+    // Custom Name
+    if let customName = dictionary["name"] as? String {
+      name = customName
+    } else {
+      name = FileUtils.getRandomFileName()
+    }
     // Custom Path
     let fileExtension = fileType.descriptor ?? "mov"
     if let customPath = dictionary["path"] as? String {
-      path = try FileUtils.getFilePath(customDirectory: customPath, fileExtension: fileExtension)
+      path = try FileUtils.getFilePath(customDirectory: customPath, fileName: name, fileExtension: fileExtension)
     } else {
-      path = try FileUtils.getFilePath(fileExtension: fileExtension)
+      path = try FileUtils.getFilePath(fileName: name, fileExtension: fileExtension)
     }
   }
 }

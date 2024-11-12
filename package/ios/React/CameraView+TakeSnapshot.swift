@@ -34,6 +34,7 @@ extension CameraView {
                                        compressionQuality: options.quality)
       return [
         "path": options.path.absoluteString,
+        "name": options.name + ".jpg",
         "width": image.size.width,
         "height": image.size.height,
         "orientation": orientation.jsValue,

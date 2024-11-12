@@ -65,6 +65,7 @@ class PhotoCaptureDelegate: GlobalReferenceHolder, AVCapturePhotoCaptureDelegate
 
       promise.resolve([
         "path": path.absoluteString,
+        "name": path.lastPathComponent,
         "width": width as Any,
         "height": height as Any,
         "orientation": orientation,

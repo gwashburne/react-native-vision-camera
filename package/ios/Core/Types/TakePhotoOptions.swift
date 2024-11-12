@@ -11,6 +11,7 @@ import Foundation
 struct TakePhotoOptions {
   var flash: Flash = .off
   var path: URL
+  var name: String
   var enableAutoRedEyeReduction = false
   var enableAutoDistortionCorrection = false
   var enableShutterSound = true
@@ -32,11 +33,17 @@ struct TakePhotoOptions {
     if let enable = dictionary["enableShutterSound"] as? Bool {
       enableShutterSound = enable
     }
+    //Custom Name
+    if let customName = dictionary["name"] as? String {
+      name = customName
+    } else {
+      name = FileUtils.getRandomFileName()
+    }
     // Custom Path
     if let customPath = dictionary["path"] as? String {
-      path = try FileUtils.getFilePath(customDirectory: customPath, fileExtension: "jpg")
+      path = try FileUtils.getFilePath(customDirectory: customPath, fileName: name, fileExtension: "jpg")
     } else {
-      path = try FileUtils.getFilePath(fileExtension: "jpg")
+      path = try FileUtils.getFilePath(fileName: name, fileExtension: "jpg")
     }
   }
 }
