@@ -18,19 +18,19 @@ struct TakeSnapshotOptions {
     if let customQuality = dictionary["quality"] as? Double {
       quality = customQuality / 100.0
     }
-      
-    //Custom Name
+
+    // Custom Name
     if let customName = dictionary["name"] as? String {
-        name = customName
+      name = customName
     } else {
-        name = FileUtils.getRandomFileName()
+      name = FileUtils.getRandomFileName()
     }
-      
+
     // Custom Path
     if let customPath = dictionary["path"] as? String {
-        path = try FileUtils.getFilePath(customDirectory: customPath, fileName: name, fileExtension: "jpg")
+      path = try FileUtils.getFilePath(customDirectory: customPath, fileName: name, fileExtension: "jpg")
     } else {
-        path = try FileUtils.getFilePath(fileName: name, fileExtension : "jpg")
+      path = FileUtils.getFilePath(fileName: name, fileExtension: "jpg")
     }
   }
 }

@@ -53,7 +53,7 @@ struct RecordVideoOptions {
     if let customPath = dictionary["path"] as? String {
       path = try FileUtils.getFilePath(customDirectory: customPath, fileName: name, fileExtension: fileExtension)
     } else {
-      path = try FileUtils.getFilePath(fileName: name, fileExtension: fileExtension)
+      path = FileUtils.getFilePath(fileName: name, fileExtension: fileExtension)
     }
   }
 }

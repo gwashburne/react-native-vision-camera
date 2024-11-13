@@ -59,16 +59,10 @@ const _CaptureButton: React.FC<Props> = ({
       if (camera.current == null) throw new Error('Camera ref is null!')
 
       console.log('Taking photo...')
-      // const photo = await camera.current.takePhoto({
-      //   flash: flash,
-      //   enableShutterSound: false,
-      // })
-
-      const photo = await camera.current.takeSnapshot({
-        //name: 'snapshot_test',
+      const photo = await camera.current.takePhoto({
+        flash: flash,
+        enableShutterSound: false,
       })
-
-      console.log(photo.name)
       onMediaCaptured(photo, 'photo')
     } catch (e) {
       console.error('Failed to take photo!', e)

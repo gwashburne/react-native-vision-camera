@@ -48,26 +48,21 @@ enum FileUtils {
     return FileManager.default.temporaryDirectory
   }
 
-    
   static func getRandomFileName() -> String {
     return UUID().uuidString
   }
-    
-    
+
   static func getFilePath(customDirectory: String, fileName: String, fileExtension: String) throws -> URL {
     // Prefix with file://
     let prefixedDirectory = customDirectory.starts(with: "file:") ? customDirectory : "file://\(customDirectory)"
     // Create URL
     guard let url = URL(string: prefixedDirectory) else {
-        throw CameraError.capture(.invalidPath(path: customDirectory))
+      throw CameraError.capture(.invalidPath(path: customDirectory))
     }
-      return url.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
-    }
-        
+    return url.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
+  }
 
   static func getFilePath(fileName: String, fileExtension: String) -> URL {
-    
     return tempDirectory.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
   }
-    
 }

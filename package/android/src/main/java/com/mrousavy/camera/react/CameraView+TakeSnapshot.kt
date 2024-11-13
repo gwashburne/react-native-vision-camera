@@ -29,7 +29,7 @@ fun CameraView.takeSnapshot(options: TakeSnapshotOptions): WritableMap {
   // Parse output data
   val map = Arguments.createMap()
   map.putString("path", options.file.file.absolutePath)
-  map.putString("name", options.file.name)
+  map.putString("name", options.file.file.getName())
   map.putInt("width", bitmap.width)
   map.putInt("height", bitmap.height)
   map.putString("orientation", orientation.unionValue)

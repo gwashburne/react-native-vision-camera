@@ -6,7 +6,6 @@ import java.io.File
 data class OutputFile(val context: Context, val directory: File, val extension: String, val name: String) {
   val file = File(directory, "$name$extension")
 
-
   init {
     try {
       file.createNewFile()

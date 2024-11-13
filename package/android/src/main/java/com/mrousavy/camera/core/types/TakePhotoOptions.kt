@@ -1,10 +1,10 @@
 package com.mrousavy.camera.core.types
 
-import java.util.UUID
 import android.content.Context
 import com.facebook.react.bridge.ReadableMap
 import com.mrousavy.camera.core.utils.FileUtils
 import com.mrousavy.camera.core.utils.OutputFile
+import java.util.UUID
 
 data class TakePhotoOptions(val file: OutputFile, val flash: Flash, val enableShutterSound: Boolean) {
 

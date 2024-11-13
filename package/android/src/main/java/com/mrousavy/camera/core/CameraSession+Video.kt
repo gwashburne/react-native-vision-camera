@@ -80,7 +80,7 @@ fun CameraSession.startRecording(
         Log.i(CameraSession.TAG, "Successfully completed video recording! Captured ${durationMs.toDouble() / 1_000.0} seconds.")
         val path = event.outputResults.outputUri.path ?: throw UnknownRecorderError(false, null)
         val size = videoOutput.attachedSurfaceResolution ?: Size(0, 0)
-        val video = Video(path, durationMs, size)
+        val video = Video(path, options.file.file.getName(), durationMs, size)
         callback(video)
       }
     }

@@ -27,6 +27,7 @@ fun CameraView.startRecording(options: RecordVideoOptions, onRecordCallback: Cal
   val callback = { video: Video ->
     val map = Arguments.createMap()
     map.putString("path", video.path)
+    map.putString("name", video.name)
     map.putDouble("duration", video.durationMs.toDouble() / 1000.0)
     map.putInt("width", video.size.width)
     map.putInt("height", video.size.height)

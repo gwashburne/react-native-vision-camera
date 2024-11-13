@@ -33,7 +33,7 @@ struct TakePhotoOptions {
     if let enable = dictionary["enableShutterSound"] as? Bool {
       enableShutterSound = enable
     }
-    //Custom Name
+    // Custom Name
     if let customName = dictionary["name"] as? String {
       name = customName
     } else {
@@ -43,7 +43,7 @@ struct TakePhotoOptions {
     if let customPath = dictionary["path"] as? String {
       path = try FileUtils.getFilePath(customDirectory: customPath, fileName: name, fileExtension: "jpg")
     } else {
-      path = try FileUtils.getFilePath(fileName: name, fileExtension: "jpg")
+      path = FileUtils.getFilePath(fileName: name, fileExtension: "jpg")
     }
   }
 }
